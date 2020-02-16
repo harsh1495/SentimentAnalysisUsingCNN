@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 """This script is used to load all the global variables that take time to load during runtime"""
+import os
+import sys
+
+filepath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, filepath + '/../')
 
 with open("utils/english.txt") as f:
     STOPWORDS = [line.rstrip() for line in f]

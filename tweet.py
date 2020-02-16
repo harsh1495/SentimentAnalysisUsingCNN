@@ -1,8 +1,7 @@
 import re
 # import sys
 from casual import TweetTokenizer
-# sys.path.append("..")
-from tweet2vec import STOPWORDS, EMBEDDINGS
+from .. import STOPWORDS, EMBEDDINGS
 
 class Tweepy():
 
