@@ -1,6 +1,10 @@
 import re
+import os
 import sys
-sys.path.append("..")
+
+filepath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, filepath + '/../')
+
 from casual import TweetTokenizer
 from .. import STOPWORDS, EMBEDDINGS
 
