@@ -6,3 +6,6 @@ install:
 
 script:
 - pytest
+- pytest --cov ./
+- pylint ./tweet.py
+- pylint ./tests/tweet_test.py
