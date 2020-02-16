@@ -1,5 +1,6 @@
 import re
-# import sys
+import sys
+sys.path.append("..")
 from casual import TweetTokenizer
 from .. import STOPWORDS, EMBEDDINGS
 
