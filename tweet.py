@@ -3,10 +3,9 @@ import os
 import sys
 
 filepath = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, filepath + '/../')
-
+sys.path.insert(0, filepath + '/')
 from casual import TweetTokenizer
-from .. import STOPWORDS, EMBEDDINGS
+from __init__ import STOPWORDS, EMBEDDINGS
 
 class Tweepy():
 
