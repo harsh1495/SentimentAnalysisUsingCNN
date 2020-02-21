@@ -33,10 +33,10 @@ with open("utils/glove.twitter.27B.25d.3.txt", 'r', encoding='utf8') as f:
 # with open ('glove.txt', 'a', encoding='utf-8') as out_file:
 #     out_file.write('\n'.join(word_list))
 
-file_path = "utils\glove.zip\glove.txt"
-if ".zip\\" in file_path:
+file_path = "utils/glove.zip/glove.txt"
+if ".zip/" in file_path:
     archive_path = os.path.abspath(file_path)
-    split = archive_path.split(".zip\\")
+    split = archive_path.split(".zip/")
     archive_path = split[0] + ".zip"
     path_inside = split[1]
     archive = ZipFile(archive_path, "r")
