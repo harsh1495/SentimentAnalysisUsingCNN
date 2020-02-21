@@ -54,6 +54,15 @@ class TweetTest(unittest.TestCase):
         """
         self.assertEqual(1, 1)
 
+    def test_tokenize_text(self):
+        self.assertEqual(1, 1)
+
+    def test_replace_token_with_index(self):
+        self.assertEqual(1, 1)
+
+    def test_pad_sequence(self):
+        self.assertEqual(1, 1)
+
     def test_tweet2vec(self):
         """
         Check if the tweet2vec function returns a list of padded vectors from a raw tweet.

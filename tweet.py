@@ -3,7 +3,7 @@ which can directly be used in a model to provide sentiment analysis."""
 import re
 import os
 import sys
-from __init__ import STOPWORDS, EMBEDDINGS
+from __init__ import STOPWORDS, EMBEDDINGS, WORD_LIST
 from casual import TweetTokenizer
 
 FILEPATH = os.path.dirname(os.path.abspath(__file__))
@@ -20,7 +20,11 @@ class Tweepy():
     :param max_length_tweet: number of words in a tweet that should be
     considered to produce the output vector
     """
-    def __init__(self, max_length_dictionary=len(EMBEDDINGS), max_length_tweet=75):
+    def __init__(self, max_length_dictionary=len(WORD_LIST), max_length_tweet=75):
+
+        self.stopwords = STOPWORDS
+        self.embeddings = EMBEDDINGS
+        self.word_list = WORD_LIST
 
         # check if max lengths are integers and then put an upper limit to it in case of junk value
         if int(max_length_tweet):
@@ -30,14 +34,12 @@ class Tweepy():
 
         if int(max_length_dictionary):
             self.max_length_dictionary = int(max_length_dictionary)
+            self.word_list = self.word_list[:max_length_dictionary]
         else:
             raise ValueError
 
         if self.max_length_dictionary < 1 or self.max_length_tweet < 1:
             raise Exception("Max length cannot be less than 1")
-
-        self.stopwords = STOPWORDS
-        self.embeddings = EMBEDDINGS
 
 
     def clean_text(self, tweet):
@@ -105,8 +107,11 @@ class Tweepy():
         """
         index_list = []
         for token in token_list:
-            if self.embeddings.get(token):
-                index_list.append(self.embeddings[token])
+            try:
+                print(self.word_list.index(token))
+                index_list.append(self.word_list.index(token))
+            except ValueError:
+                pass
 
         return index_list
 
@@ -121,13 +126,13 @@ class Tweepy():
 
         :returns: A padded list of vectors.
         """
-        zeroes = [0] * 25
+        zeroes = [0]
         if len(vector_list) > self.max_length_tweet:
             vector_list = vector_list[:self.max_length_tweet]
 
         elif len(vector_list) < self.max_length_tweet:
             for _ in range(0, self.max_length_tweet-len(vector_list)):
-                vector_list.append(zeroes)
+                vector_list.extend(zeroes)
 
         else:
             pass
@@ -150,3 +155,8 @@ class Tweepy():
         vectors = self.pad_sequence(index)
 
         return vectors
+
+
+t = Tweepy(max_length_tweet=30)
+z = t.tweet2vec("my name is harsh and i dakjsdsa not a !! dkj @ndka")
+print(z)
