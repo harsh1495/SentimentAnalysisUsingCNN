@@ -108,7 +108,6 @@ class Tweepy():
         index_list = []
         for token in token_list:
             try:
-                print(self.word_list.index(token))
                 index_list.append(self.word_list.index(token))
             except ValueError:
                 pass
@@ -157,6 +156,6 @@ class Tweepy():
         return vectors
 
 
-t = Tweepy(max_length_tweet=30)
-z = t.tweet2vec("my name is harsh and i dakjsdsa not a !! dkj @ndka")
-print(z)
+# t = Tweepy(max_length_tweet=30)
+# z = t.tweet2vec("my name is harsh and i dakjsdsa not a !! dkj @ndka")
+# print(z)
